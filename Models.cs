@@ -285,4 +285,27 @@ namespace JsonSerializer_NullReferenceException_Repro
         A = 1,
         B = 2,
     }
+
+    public sealed class Parent
+    {
+        public string A { get; set; }
+        public int B { get; set; }
+        public int C { get; set; }
+        public string D { get; set; }
+        public string E { get; set; }
+        public DateTime F { get; set; }
+        public int G { get; set; }
+        public Child H { get; set; }
+    }
+
+    public sealed class Child
+    {
+        public double A { get; set; }
+        public string B { get; set; }
+        public int C { get; set; }
+        public int D { get; set; }
+        public string E { get; set; }
+        public DateTime F { get; set; }
+        public int G { get; set; }
+    }
 }

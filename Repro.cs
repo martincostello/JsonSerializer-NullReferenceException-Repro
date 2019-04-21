@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -112,6 +113,23 @@ namespace JsonSerializer_NullReferenceException_Repro
 
             // Act
             var model = await JsonSerializer.ReadAsync<RootObject>(utf8Json, options);
+
+            // Assert
+            Assert.NotNull(model);
+        }
+
+        [Fact]
+        public static async Task ReadAsync_Does_Not_Throw_2()
+        {
+            // Arrange
+            var json = @"[{""A"":"""",""B"":0,""C"":0,""D"":"""",""E"":"""",""F"":""2019-04-21T16:21:08.1495557Z"",""G"":0,""H"":null}]";
+
+            var buffer = Encoding.UTF8.GetBytes(json);
+            var utf8Json = new MemoryStream(buffer);
+            var options = new JsonSerializerOptions();
+
+            // Act
+            var model = await JsonSerializer.ReadAsync<IList<Parent>>(utf8Json, options);
 
             // Assert
             Assert.NotNull(model);
