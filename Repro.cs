@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -112,7 +112,7 @@ namespace JsonSerializer_NullReferenceException_Repro
             var options = new JsonSerializerOptions();
 
             // Act
-            var model = await JsonSerializer.ReadAsync<RootObject>(utf8Json, options);
+            var model = await JsonSerializer.DeserializeAsync<RootObject>(utf8Json, options);
 
             // Assert
             Assert.NotNull(model);
@@ -129,7 +129,7 @@ namespace JsonSerializer_NullReferenceException_Repro
             var options = new JsonSerializerOptions();
 
             // Act
-            var model = await JsonSerializer.ReadAsync<IList<Parent>>(utf8Json, options);
+            var model = await JsonSerializer.DeserializeAsync<IList<Parent>>(utf8Json, options);
 
             // Assert
             Assert.NotNull(model);
